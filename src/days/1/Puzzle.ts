@@ -1,15 +1,21 @@
-const first = (input: string) => {
-    console.log(input);
-    return 'solution 1';
-};
+import { findFirstNum, findFirstNumWithStrings, reverseString } from './utils';
+import { split } from '../../utils/split';
 
-const expectedFirstSolution = 'solution 1';
+export const first = (input: string) =>
+  split(input).reduce((acc, line) => {
+    const firstNum = findFirstNum(line);
+    const secondNum = findFirstNum(reverseString(line));
 
-const second = (input: string) => {
-    console.log(input);
-    return 'solution 2';
-};
+    acc += Number(firstNum + secondNum);
+    return acc;
+  }, 0);
 
-const expectedSecondSolution = 'solution 2';
-
-export { first, expectedFirstSolution, second, expectedSecondSolution };
+export const second = (input: string) =>
+  split(input).reduce((acc, line) => {
+    const firstNum = findFirstNumWithStrings(line);
+    const secondNum = findFirstNumWithStrings(reverseString(line), {
+      reverse: true,
+    });
+    acc += Number(firstNum + secondNum);
+    return acc;
+  }, 0);
