@@ -7,7 +7,7 @@
     "build": "rm -rf dist && tsc",
     "test": "vitest",
     "start": "node dist/index.js",
-    "init-day": "bun src/scripts/initNewDay/initNewDay.ts",
+    "init": "bun src/scripts/initNewDay/initNewDay.ts",
     "lint": "eslint src",
     "lint:fix": "eslint --fix src"
   },

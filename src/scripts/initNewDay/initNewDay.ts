@@ -10,19 +10,21 @@ import { existsSync, copyFileSync, mkdirSync, writeFileSync } from 'fs';
 const args = process.argv.slice(2);
 const day = args[0];
 if (!day) {
-    console.log('Please run with the day to bootstrap, i.e. npm run init-day 1');
+  console.log('Please run with the day to bootstrap, i.e. npm run init-day 1');
 }
 console.log(`creating template for day ${day}`);
 const basePath = 'src/days';
 
 if (existsSync(`src/days/${day}`)) {
-    console.log(`day ${day} already exists`);
-    process.exit(0);
+  console.log(`day ${day} already exists`);
+  process.exit(0);
 }
 const newDayPath = `${basePath}/${day}`;
 mkdirSync(newDayPath);
 copyFileSync(`${__dirname}/Puzzle.ts.tpl`, `${newDayPath}/Puzzle.ts`);
 copyFileSync(`${__dirname}/Puzzle.spec.ts.tpl`, `${newDayPath}/Puzzle.spec.ts`);
+copyFileSync(`${__dirname}/utils.ts.tpl`, `${newDayPath}/utils.ts`);
+copyFileSync(`${__dirname}/utils.spec.ts.tpl`, `${newDayPath}/utils.spec.ts`);
 writeFileSync(`${newDayPath}/input.txt`, '');
 writeFileSync(`${newDayPath}/input1.txt`, '');
 writeFileSync(`${newDayPath}/input2.txt`, '');
