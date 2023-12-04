@@ -3,3 +3,4 @@ dist
 /.idea
 # Default ignored files
 /shelf/
+*.iml
