@@ -1,26 +1,20 @@
-import { parseInput, parseInput2, mapRange } from './utils';
+import { parseInput, parseInput2, mapRanges, mapSeed } from './utils';
 
 const first = (input: string) => {
   const { seeds, ranges } = parseInput(input);
   const locations = seeds.map((seed) =>
-    ranges.reduce((acc, range) => mapRange(acc, range), seed)
+    ranges.reduce((acc, range) => mapSeed(acc, range), seed)
   );
   return Math.min(...locations);
 };
 
-const memory: Record<number, number> = {};
 const second = (input: string) => {
-  const { seeds, ranges } = parseInput2(input);
-  const locations = seeds.map((seed) => {
-    if (memory[seed]) {
-      return memory[seed];
-    }
-    memory[seed] = ranges.reduce((acc, range) => mapRange(acc, range), seed);
-    return memory[seed];
-  });
-  console.log(seeds, locations);
-  return Math.min(...locations);
-  // return 0;
+  const { seedRanges, ranges } = parseInput2(input);
+  const locationRanges = ranges.reduce(
+    (acc, range) => mapRanges(acc, range),
+    seedRanges
+  );
+  return Math.min(...locationRanges.map((range) => range[0]));
 };
 
 export { first, second };
