@@ -12,6 +12,6 @@ describe('Puzzle', () => {
 
   it('solves part 2', async () => {
     const input = await readFile(`${__dirname}/input2.txt`);
-    expect(second(input)).toBe('' /* TODO: second solution */);
+    expect(second(input)).toBe(5905);
   });
 });
