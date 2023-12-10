@@ -91,6 +91,7 @@ const pipeDefinitions: {
 
 type Pipe = {
   isPartOfLoop: boolean;
+  isFlooded?: boolean;
   type: PipeType;
   connections: Array<Coords>;
 };
@@ -190,7 +191,7 @@ export const printMap = (pipes: Array<Array<Pipe>>) => {
       if (pipe.isPartOfLoop) {
         lineString += pipe.type;
       } else {
-        lineString += '.';
+        lineString += pipe.isFlooded ? 'O' : 'I';
       }
     });
     console.log(lineString);
